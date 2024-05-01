@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 2885812381595285092}
   - component: {fileID: 8164494699338042852}
   - component: {fileID: 7710483901850986980}
+  - component: {fileID: 1507382618}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -894,6 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMovement: 10
   move: {fileID: 2906269902441118146, guid: 19f90f723bffdde4aa465b1e81f83041, type: 3}
+  interact: {fileID: -4912115333720698978, guid: 19f90f723bffdde4aa465b1e81f83041, type: 3}
 --- !u!114 &7710483901850986980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +924,22 @@ MonoBehaviour:
   legLeft: {fileID: 8803324153158376088}
   bootRight: {fileID: 8803324149643878690}
   legRight: {fileID: 8803324152643875686}
+--- !u!58 &1507382618
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708010932813008906}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 3.5}
+  serializedVersion: 2
+  m_Radius: 7.5
 --- !u!1 &8708010932867043796
 GameObject:
   m_ObjectHideFlags: 0
