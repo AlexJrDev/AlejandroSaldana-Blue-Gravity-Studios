@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
+using Store;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class MainManager : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public PlayerController Player { get; private set; }
     public PlayerBodyParts PlayerBodyParts { get; private set; }
+    public StoreManager StoreManager { get; private set;}
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class MainManager : MonoBehaviour
         Inventory = GetComponentInChildren<Inventory>();
         Player = FindObjectOfType<PlayerController>();
         PlayerBodyParts = Player.GetComponent<PlayerBodyParts>();
+        StoreManager = GetComponentInChildren<StoreManager>(true);
 
     }
 }

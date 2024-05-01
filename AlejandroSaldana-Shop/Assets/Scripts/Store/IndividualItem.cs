@@ -27,6 +27,7 @@ namespace Store
         public void BtnSelectItem()
         {
             _storeManager.EquipItem(myItem);
+            _storeManager.SetBtnBuy(gameObject, myItem);
         }
     }
 }
