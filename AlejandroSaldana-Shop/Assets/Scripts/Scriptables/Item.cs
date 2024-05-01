@@ -14,6 +14,8 @@ namespace Scriptables
         public Sprite itemSprite; // main or left part
         public Sprite itemSprite2; //right part if it has one
         public BodyPart bodyPartType;
+        public int buyCost;
+        public int sellPrice;
 
     }
 }
