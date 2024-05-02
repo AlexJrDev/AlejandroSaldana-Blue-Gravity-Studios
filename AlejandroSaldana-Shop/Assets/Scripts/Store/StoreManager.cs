@@ -279,6 +279,8 @@ namespace Store
             
             if(isInStore) return;
             
+            if (_itemToInteract == null) return;
+            
             switch (_itemToInteract.bodyPartType) {
                 case Item.BodyPart.Face:
                     MainManager.Instance.Inventory.currentFace = _itemToInteract;

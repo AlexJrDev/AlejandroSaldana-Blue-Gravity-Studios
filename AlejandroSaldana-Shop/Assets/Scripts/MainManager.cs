@@ -32,4 +32,9 @@ public class MainManager : MonoBehaviour
         StoreManager = GetComponentInChildren<StoreManager>(true);
 
     }
+
+    public void StartInput()
+    {
+        Player.playerInput.SwitchCurrentActionMap("Player");
+    }
 }
