@@ -107,6 +107,8 @@ namespace Player
             if (other.CompareTag($"Interact"))
             {
                 _inStoreArea = false;
+                
+                if(_currentInteractArea == null) return;
                 _currentInteractArea.ExitArea();
                 _currentInteractArea = null;
             };

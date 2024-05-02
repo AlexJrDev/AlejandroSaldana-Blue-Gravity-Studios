@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Close shop
+  m_text: Close
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3372,6 +3372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417002d4f20efac439c6fb86684b5949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInStore: 0
   playerBodyParts: {fileID: 679446957}
   coinsText: {fileID: 1656275828}
   itemTypeMenu: {fileID: 1022326392}
@@ -3442,8 +3443,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00b4dfca8548e4c42826935aa9477c04, type: 2}
   - {fileID: 11400000, guid: 17e953baf9b248b4faa7729650bb2c4d, type: 2}
   - {fileID: 11400000, guid: fd4a140c26d9b204283c43f5a35927fb, type: 2}
-  btnBuyRef: {fileID: 96260631}
-  buyText: {fileID: 1092867931}
+  btnBuySellRef: {fileID: 96260631}
+  buySellText: {fileID: 1092867931}
 --- !u!1 &1136319636
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,6 +5365,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9d96cf6e84cf434eb6bc85319be2150, type: 2}
   ownedWeapon:
   - {fileID: 11400000, guid: b6823f277f8d2514fa231ebc2d919a6a, type: 2}
+  currentHood: {fileID: 11400000, guid: 05d15735495718a41930d27173912d56, type: 2}
+  currentFace: {fileID: 11400000, guid: a8f665656c322ef42a1f67ec4cb487e0, type: 2}
+  currentShoulder: {fileID: 11400000, guid: 6ab0606f687adec40bc178d040677de9, type: 2}
+  currentElbow: {fileID: 11400000, guid: 6b43c3895b69d184998ee985e26e2273, type: 2}
+  currentWrist: {fileID: 11400000, guid: d6b2f65faf189f44c8a7a401ea0a3a70, type: 2}
+  currentTorso: {fileID: 11400000, guid: 3ee34a5abe58e4b4fa72a91155b9985d, type: 2}
+  currentPelvis: {fileID: 11400000, guid: c12de5b915f587c478005c9f2cf0b4c1, type: 2}
+  currentLeg: {fileID: 11400000, guid: dc2c99faa9d736344bc1db3dec565d5f, type: 2}
+  currentBoot: {fileID: 11400000, guid: f9d96cf6e84cf434eb6bc85319be2150, type: 2}
+  currentWeapon: {fileID: 11400000, guid: b6823f277f8d2514fa231ebc2d919a6a, type: 2}
 --- !u!1 &1884879084
 GameObject:
   m_ObjectHideFlags: 0
