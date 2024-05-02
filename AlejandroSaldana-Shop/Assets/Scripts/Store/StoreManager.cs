@@ -33,7 +33,20 @@ namespace Store
         [SerializeField] private List<Item> availableWeapons = new List<Item>();
 
         [Space] 
+        [SerializeField] private GameObject btnRefHoods;
+        [SerializeField] private GameObject btnRefFaces;
+        [SerializeField] private GameObject btnRefShoulders;
+        [SerializeField] private GameObject btnRefElbows;
+        [SerializeField] private GameObject btnRefWrist;
+        [SerializeField] private GameObject btnRefTorso;
+        [SerializeField] private GameObject btnRefPelvis;
+        [SerializeField] private GameObject btnRefLegs;
+        [SerializeField] private GameObject btnRefBoots;
+        [SerializeField] private GameObject btnRefWeapons;
+        
+        [Space] 
         [SerializeField] private GameObject btnBuySellRef;
+        [SerializeField] private GameObject btnEquip;
         [SerializeField] private TextMeshProUGUI buySellText;
 
         private Item _itemToInteract;
@@ -84,14 +97,17 @@ namespace Store
         {
             _lastItemSelected = lastSelected;
             _itemToInteract = itemSelected;
-            btnBuySellRef.SetActive(true);
+            
             if (isInStore)
             {
                 buySellText.text = "Buy with : " + itemSelected.buyCost.ToString();
+                btnBuySellRef.SetActive(true);
             }
             else
             {
+                if(itemSelected.sellPrice == 0) return;
                 buySellText.text = "Sell for : " + itemSelected.sellPrice.ToString();
+                btnBuySellRef.SetActive(true);
             }
         }
 
@@ -102,44 +118,53 @@ namespace Store
                 if(_itemToInteract.buyCost > MainManager.Instance.Inventory.currentCoins) return;
 
                 MainManager.Instance.Inventory.currentCoins -= _itemToInteract.buyCost;
-                
+                coinsText.text = MainManager.Instance.Inventory.currentCoins.ToString();
             
                 Destroy(_lastItemSelected);
                 btnBuySellRef.SetActive(false);
                 
                 MainManager.Instance.PlayerBodyParts.SwapFullBody(playerBodyParts);
             
-                switch (_itemToInteract.bodyPartType)
-            {
+                switch (_itemToInteract.bodyPartType) {
                 case Item.BodyPart.Face:
                     MainManager.Instance.Inventory.ownedFaces.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentFace = _itemToInteract;
                     break;
                 case Item.BodyPart.Hood:
                     MainManager.Instance.Inventory.ownedHoods.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentHood = _itemToInteract;
                     break;
                 case Item.BodyPart.Torso:
                     MainManager.Instance.Inventory.ownedTorso.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentTorso = _itemToInteract;
                     break;
                 case Item.BodyPart.Pelvis:
                     MainManager.Instance.Inventory.ownedPelvis.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentPelvis = _itemToInteract;
                     break;
                 case Item.BodyPart.Wrist:
                     MainManager.Instance.Inventory.ownedWrists.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentWrist = _itemToInteract;
                     break;
                 case Item.BodyPart.Weapon:
                     MainManager.Instance.Inventory.ownedWeapon.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentWeapon = _itemToInteract;
                     break;
                 case Item.BodyPart.Elbow:
                     MainManager.Instance.Inventory.ownedElbows.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentElbow = _itemToInteract;
                     break;
                 case Item.BodyPart.Shoulder:
                     MainManager.Instance.Inventory.ownedShoulders.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentShoulder = _itemToInteract;
                     break;
                 case Item.BodyPart.Boot:
                     MainManager.Instance.Inventory.ownedBoot.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentBoot = _itemToInteract;
                     break;
                 case Item.BodyPart.Leg:
                     MainManager.Instance.Inventory.ownedLeg.Add(_itemToInteract);
+                    MainManager.Instance.Inventory.currentLeg = _itemToInteract;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -188,9 +213,17 @@ namespace Store
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+                
+                btnBuySellRef.SetActive(false);
+                btnEquip.SetActive(false);
             }
             
             
+        }
+
+        public void ShowBtnEquip()
+        {
+            btnEquip.SetActive(true);
         }
 
         public void SetUpStore()
@@ -198,6 +231,38 @@ namespace Store
             playerBodyParts.SwapFullBody(MainManager.Instance.PlayerBodyParts);
             coinsText.text = MainManager.Instance.Inventory.currentCoins.ToString();
             MainManager.Instance.Player.playerInput.SwitchCurrentActionMap("Wait");
+            
+            ShowHideMenuBtns();
+        }
+
+        private void ShowHideMenuBtns()
+        {
+            if (isInStore)
+            {
+                btnRefHoods.SetActive(availableHoods.Count != MainManager.Instance.Inventory.ownedHoods.Count);
+                btnRefFaces.SetActive(availableFaces.Count != MainManager.Instance.Inventory.ownedFaces.Count);
+                btnRefShoulders.SetActive(availableShoulders.Count != MainManager.Instance.Inventory.ownedShoulders.Count);
+                btnRefElbows.SetActive(availableElbows.Count != MainManager.Instance.Inventory.ownedElbows.Count);
+                btnRefWrist.SetActive(availableWrist.Count != MainManager.Instance.Inventory.ownedWrists.Count);
+                btnRefTorso.SetActive(availableTorso.Count != MainManager.Instance.Inventory.ownedTorso.Count);
+                btnRefPelvis.SetActive(availablePelvis.Count != MainManager.Instance.Inventory.ownedPelvis.Count);
+                btnRefLegs.SetActive(availableLegs.Count != MainManager.Instance.Inventory.ownedLeg.Count);
+                btnRefBoots.SetActive(availableBoots.Count != MainManager.Instance.Inventory.ownedBoot.Count);
+                btnRefWeapons.SetActive(availableWeapons.Count != MainManager.Instance.Inventory.ownedWeapon.Count);
+            }
+            else
+            {
+                btnRefHoods.SetActive(MainManager.Instance.Inventory.ownedHoods.Count != 1);
+                btnRefFaces.SetActive(MainManager.Instance.Inventory.ownedFaces.Count != 1);
+                btnRefShoulders.SetActive(MainManager.Instance.Inventory.ownedShoulders.Count != 1);
+                btnRefElbows.SetActive(MainManager.Instance.Inventory.ownedElbows.Count != 1);
+                btnRefWrist.SetActive(MainManager.Instance.Inventory.ownedWrists.Count != 1);
+                btnRefTorso.SetActive(MainManager.Instance.Inventory.ownedTorso.Count != 1);
+                btnRefPelvis.SetActive(MainManager.Instance.Inventory.ownedPelvis.Count != 1);
+                btnRefLegs.SetActive(MainManager.Instance.Inventory.ownedLeg.Count != 1);
+                btnRefBoots.SetActive(MainManager.Instance.Inventory.ownedBoot.Count != 1);
+                btnRefWeapons.SetActive(MainManager.Instance.Inventory.ownedWeapon.Count != 1);
+            }
         }
 
         public void BtnCloseStore()
@@ -211,10 +276,49 @@ namespace Store
         public void EquipVisibleItems()
         {
             MainManager.Instance.PlayerBodyParts.SwapFullBody(playerBodyParts);
+            
+            if(isInStore) return;
+            
+            switch (_itemToInteract.bodyPartType) {
+                case Item.BodyPart.Face:
+                    MainManager.Instance.Inventory.currentFace = _itemToInteract;
+                    break;
+                case Item.BodyPart.Hood:
+                    MainManager.Instance.Inventory.currentHood = _itemToInteract;
+                    break;
+                case Item.BodyPart.Torso:
+                    MainManager.Instance.Inventory.currentTorso = _itemToInteract;
+                    break;
+                case Item.BodyPart.Pelvis:
+                    MainManager.Instance.Inventory.currentPelvis = _itemToInteract;
+                    break;
+                case Item.BodyPart.Wrist:
+                    MainManager.Instance.Inventory.currentWrist = _itemToInteract;
+                    break;
+                case Item.BodyPart.Weapon:
+                    MainManager.Instance.Inventory.currentWeapon = _itemToInteract;
+                    break;
+                case Item.BodyPart.Elbow:
+                    MainManager.Instance.Inventory.currentElbow = _itemToInteract;
+                    break;
+                case Item.BodyPart.Shoulder:
+                    MainManager.Instance.Inventory.currentShoulder = _itemToInteract;
+                    break;
+                case Item.BodyPart.Boot:
+                    MainManager.Instance.Inventory.currentBoot = _itemToInteract;
+                    break;
+                case Item.BodyPart.Leg:
+                    MainManager.Instance.Inventory.currentLeg = _itemToInteract;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public void BtnBack()
         {
+            ShowHideMenuBtns();
+            
             itemStoreMenu.SetActive(false);
             btnBuySellRef.SetActive(false);
             itemTypeMenu.SetActive(true);

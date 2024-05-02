@@ -28,17 +28,11 @@ namespace Store
         {
             _storeManager.EquipItem(myItem);
 
-            if (_storeManager.isInStore)
-            {
-                _storeManager.SetBtnBuy(gameObject, myItem);
-                return;
-            }
-
-            _storeManager.EquipVisibleItems();
-            
-            if(myItem.sellPrice == 0) return;
             _storeManager.SetBtnBuy(gameObject, myItem);
-            
+
+            if(_storeManager.isInStore) return;
+            _storeManager.ShowBtnEquip();
+
         }
     }
 }

@@ -17,4 +17,4 @@ MonoBehaviour:
   itemSprite2: {fileID: 21300000, guid: c764210032bc5df46a28cb6e1f3ad991, type: 3}
   bodyPartType: 4
   buyCost: 40
-  sellPrice: 0
+  sellPrice: 30

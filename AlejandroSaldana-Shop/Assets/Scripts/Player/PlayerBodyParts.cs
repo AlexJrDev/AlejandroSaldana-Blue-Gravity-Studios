@@ -33,65 +33,55 @@ namespace Player
 
         public void SwapFace(Item newFace)
         {
-            MainManager.Instance.Inventory.currentFace = newFace;
             face.sprite = newFace.itemSprite;
         }
         public void SwapHood(Item newHood)
         {
-            MainManager.Instance.Inventory.currentHood = newHood;
             hood.sprite = newHood.itemSprite;
         }
 
         public void SwapTorso(Item newTorso)
         {
-            MainManager.Instance.Inventory.currentTorso = newTorso;
             torso.sprite = newTorso.itemSprite;
         }
         
         public void SwapPelvis(Item newPelvis)
         {
-            MainManager.Instance.Inventory.currentPelvis = newPelvis;
             pelvis.sprite = newPelvis.itemSprite;
         }
         
         public void SwapShoulder(Item newShoulder)
         {
-            MainManager.Instance.Inventory.currentShoulder = newShoulder;
             shoulderLeft.sprite = newShoulder.itemSprite;
             shoulderRight.sprite = newShoulder.itemSprite2;
         }
         
         public void SwapElbow(Item newElbow)
         {
-            MainManager.Instance.Inventory.currentElbow = newElbow;
             elbowLeft.sprite = newElbow.itemSprite;
             elbowRight.sprite = newElbow.itemSprite2;
         }
         
         public void SwapWrist(Item newWrist)
         {
-            MainManager.Instance.Inventory.currentWrist = newWrist;
             wristLeft.sprite = newWrist.itemSprite;
             wristRight.sprite = newWrist.itemSprite2;
         }
         
         public void SwapLegs(Item newLegs)
         {
-            MainManager.Instance.Inventory.currentLeg = newLegs;
             legLeft.sprite = newLegs.itemSprite;
             legRight.sprite = newLegs.itemSprite2;
         }
         
         public void SwapBoots(Item newBoots)
         {
-            MainManager.Instance.Inventory.currentBoot = newBoots;
             bootLeft.sprite = newBoots.itemSprite;
             bootRight.sprite = newBoots.itemSprite2;
         }
         
         public void SwapWeapon(Item newWeapon)
         {
-            MainManager.Instance.Inventory.currentWeapon = newWeapon;
             weaponLeft.sprite = newWeapon.itemSprite;
             weaponRight.sprite = newWeapon.itemSprite2;
         }

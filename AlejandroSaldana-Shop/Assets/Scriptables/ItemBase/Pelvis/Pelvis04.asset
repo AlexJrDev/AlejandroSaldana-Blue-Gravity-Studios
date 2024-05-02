@@ -17,4 +17,4 @@ MonoBehaviour:
   itemSprite2: {fileID: 0}
   bodyPartType: 3
   buyCost: 50
-  sellPrice: 0
+  sellPrice: 20
