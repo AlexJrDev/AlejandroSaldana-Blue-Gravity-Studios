@@ -1,4 +1,5 @@
 using System;
+using InteractObj;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,8 +8,9 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float speedMovement;
-        
-        [Header("Input actions ref")]
+
+        [Header("Input actions ref")] 
+        public PlayerInput playerInput;
         [SerializeField] private InputActionReference move;
         [SerializeField] private InputActionReference interact;
         
@@ -18,6 +20,7 @@ namespace Player
         private Vector2 _input;
 
         private bool _inStoreArea;
+        private Interact _currentInteractArea;
         
         
         //Animations
@@ -39,7 +42,8 @@ namespace Player
 
         private void Interact(InputAction.CallbackContext obj)
         {
-            Debug.Log(_inStoreArea);
+            if(!_inStoreArea) return;
+            _currentInteractArea.InteractAction();
         }
         
         #endregion
@@ -90,17 +94,23 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag($"Shopkeeper"))
+            if (other.CompareTag($"Interact"))
             {
                 _inStoreArea = true;
+                _currentInteractArea = other.GetComponent<Interact>();
+                _currentInteractArea.InArea();
             };
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag($"Shopkeeper"))
+            if (other.CompareTag($"Interact"))
             {
                 _inStoreArea = false;
+                
+                if(_currentInteractArea == null) return;
+                _currentInteractArea.ExitArea();
+                _currentInteractArea = null;
             };
         }
 
